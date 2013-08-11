@@ -1,0 +1,140 @@
+{% load url from future %}
+{% load productos_tags %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>Tradeco</title>
+<link href="{{ STATIC_URL }}img/favicon.png" rel="icon" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- CSS Part Start-->
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/slideshow.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/colorbox.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/carousel.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/site.css" />
+<!-- CSS Part End-->
+<!-- JS Part Start-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/colorbox/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/tabs.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.easing-1.3.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/cloud_zoom.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/custom.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.dcjqaccordion.js"></script>
+<!-- JS Part End-->
+</head>
+<body>
+<div class="main-wrapper">
+  <!-- Header Parts Start-->
+  <div id="header">
+    <!-- Top Right part Links-->
+    <div id="logo"><a href="index.html"><img src="{{ STATIC_URL }}img/logo.png" title="ecommerce Html Template" alt="ecommerce Html Template" /></a></div>
+  </div>
+  <!--Top Navigation Start-->
+    {% menu_categorias %}
+  <!--Top Navigation Start-->
+  <div id="container">
+    <!--Left Part-->
+    <!--Left End-->
+    <!--Middle Part Start-->
+    <div id="content">
+      <!--Slideshow Part Start-->
+      <div class="slider-wrapper">
+        <div id="slideshow" class="nivoSlider"> <a href="#"><img src="{{ STATIC_URL }}img/slider/slider-1.jpg" alt="slideshow-1" /></a> <a href="#"><img src="{{ STATIC_URL }}img/slider/slider-2.jpg" alt="slideshow-2" /></a> <a href="#"><img src="{{ STATIC_URL }}img/slider/slider-3.jpg" alt="slideshow-3" /></a> <a href="#"><img src="{{ STATIC_URL }}img/slider/slider-4.jpg" alt="slideshow-4" /></a> </div>
+      </div>
+      <script type="text/javascript">
+$(document).ready(function() {
+	$('#slideshow').nivoSlider();
+});
+</script>
+      <!--Slideshow Part End-->
+      <!--Featured Product Part Start-->
+      <div class="box">
+          {% productos_destacados %}
+      </div>
+      <!--Featured Product Part End-->
+    </div>
+    <!--Middle Part End-->
+    <div class="clear"></div>
+    <div class="social-part">
+      <!--Facebook Fun Box Start-->
+      <div id="facebook" >
+      <div class="facebook-inner">
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-like-box" data-href="http://www.facebook.com/160281810726316" data-width="585" data-show-faces="true" data-stream="false" data-header="false" data-border-color="#fff"></div>
+      </div></div>
+      <!--Facebook Fun Box End-->
+      <!--Twitter Feeds Box Start-->
+      <div id="twitter_footer">
+<a class="twitter-timeline" href="https://twitter.com/harnishdesign" data-chrome="noheader nofooter noborders noscrollbar transparent" data-theme="light" data-tweet-limit="2" data-related="twitterapi,twitter" data-aria-polite="assertive" data-widget-id="347621595801608192">Tweets by @harnishdesign</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</div>
+      <!--Twitter Feeds Box End-->
+    </div>
+  </div>
+</div>
+<!--Footer Part Start-->
+<div id="footer">
+  <div class="column">
+    <h3>Information</h3>
+    <ul>
+      <li><a href="about-us.html">About Us</a></li>
+      <li><a href="about-us.html">Delivery Information</a></li>
+      <li><a href="about-us.html">Privacy Policy</a></li>
+      <li><a href="elements.html">Elements</a></li>
+    </ul>
+  </div>
+  <div class="column">
+    <h3>Customer Service</h3>
+    <ul>
+      <li><a href="contact-us.html">Contact Us</a></li>
+      <li><a href="#">Returns</a></li>
+      <li><a href="sitemap.html">Site Map</a></li>
+    </ul>
+  </div>
+  <div class="column">
+    <h3>Extras</h3>
+    <ul>
+      <li><a href="#">Brands</a></li>
+      <li><a href="#">Gift Vouchers</a></li>
+      <li><a href="#">Affiliates</a></li>
+      <li><a href="#">Specials</a></li>
+    </ul>
+  </div>
+  <div class="column">
+    <h3>My Account</h3>
+    <ul>
+      <li><a href="#">My Account</a></li>
+      <li><a href="#">Order History</a></li>
+      <li><a href="#">Wish List</a></li>
+      <li><a href="#">Newsletter</a></li>
+    </ul>
+  </div>
+  <div class="contact">
+    <ul>
+      <li class="address">Second plaza, Delhi, india.</li>
+      <li class="mobile">191 191 91 19</li>
+      <li class="email"><a href="mailto:info@demo.com">info@demo.com</a></li>
+      <li class="fax">191 191 91 19</li>
+    </ul>
+  </div>
+  <div class="social"> <a href="http://facebook.com/160281810726316 " target="_blank"><img src="{{ STATIC_URL }}img/facebook.png" alt="Facebook" title="Facebook"></a> <a href="https://twitter.com/#!/#" target="_blank"><img src="{{ STATIC_URL }}img/twitter.png" alt="Twitter" title="Twitter"></a> <a href="https://plus.google.com/u/0/#" target="_blank"><img src="{{ STATIC_URL }}img/googleplus.png" alt="Google+" title="Google+"></a> <a href="http://pinterest.com/#" target="_blank"><img src="{{ STATIC_URL }}img/pinterest.png" alt="Pinterest" title="Pinterest"></a> <a href="#" target="_blank"><img src="{{ STATIC_URL }}img/rss.png" alt="RSS" title="RSS"></a> <a href="http://www.vimeo.com/#" target="_blank"><img src="{{ STATIC_URL }}img/vimeo.png" alt="Vimeo" title="Vimeo"></a> <a href="http://www.flickr.com/photos/#" target="_blank"><img src="{{ STATIC_URL }}img/flickr.png" alt="flickr" title="Flickr"></a> <a href="http://www.youtube.com/#" target="_blank"><img src="{{ STATIC_URL }}img/youtube.png" alt="YouTube" title="YouTube"></a> <a href="skype:#?call" target="_blank"><img src="{{ STATIC_URL }}img/skype.png" alt="skype" title="Skype"></a> <a href="#" target="_blank"><img src="{{ STATIC_URL }}img/blogger.png" alt="Blogger" title="Blogger"></a> </div>
+  <div class="clear"></div>
+  <div id="powered">Bigshop <a href="#">Html Template </a> &copy; 2013 &nbsp;|&nbsp; Template By <a target="_blank" href="http://harnishdesign.net">Harnish Design</a>
+  </div>
+</div>
+<!--Footer Part End-->
+</body>
+</html>

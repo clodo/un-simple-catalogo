@@ -1,0 +1,16 @@
+<div id="menu"><span>Menu</span>
+    <ul>
+        <li class="home"><a  title="Home" href="index.html"><span>Home</span></a></li>
+        {% for categoria in categorias %}
+        <li><a href="category.html">{{ categoria.nombre }}</a>
+        {% for subcategoria in categoria.subcategoria_set.all %}
+        <div>
+            <ul>
+                <li><a href="category.html">{{ subcategoria.nombre }}</a></li>
+            </ul>
+        </div>
+        {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
