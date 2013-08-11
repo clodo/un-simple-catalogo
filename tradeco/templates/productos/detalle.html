@@ -2,7 +2,12 @@
 {% load url from future %}
 {% block content %}
 <!--Breadcrumb Part Start-->
-<div class="breadcrumb"> <a href="index.html">Home</a> » <a href="#">iPhone</a></div>
+<div class="breadcrumb"> 
+    {% for e in breadcrumb %}
+    <a href="{{ e.1 }}">{{e.0}}</a> 
+    {% if not forloop.last %} » {% endif %}
+    {% endfor %}
+</div>
 <!--Breadcrumb Part End-->
 <div class="product-info">
 <div class="left">

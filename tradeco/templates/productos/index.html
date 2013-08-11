@@ -7,7 +7,6 @@
     <a href="{{ e.1 }}">{{e.0}}</a> 
     {% if not forloop.last %} » {% endif %}
     {% endfor %}
-
 </div>
 <!--Breadcrumb Part End-->
 <h1>{{ titulo }}</h1>
@@ -38,7 +37,7 @@
     {% for producto in productos %}
     <div>
         <div class="left">
-        <div class="image"><a href="#"><img src="{{ producto.thumbnail.url }}" alt="{{ producto.titulo }}" /></a></div>
+        <div class="image"><a href="{% url 'productos.views.detalle' producto.slug %}"><img src="{{ producto.thumbnail.url }}" alt="{{ producto.titulo }}" /></a></div>
         <div class="name"><a href="product.html">{{ producto.titulo }}</a></div>
         <div class="description">{{ producto.descripcion }}</div>
         </div>
