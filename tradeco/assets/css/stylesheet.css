@@ -468,6 +468,8 @@ a.wishlist:hover {color:#F15A23;}
 .product-info{overflow:hidden!important;}
 .htabs a{font-size:11px; padding:7px 5px 6px 5px;}
 #header #cart .content{width:250px;}
+
+#logo img { max-height:40px; }
  }
 @media screen and (max-width:480px) {
  #currency span, #language span { display:none; }

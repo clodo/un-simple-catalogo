@@ -6,6 +6,7 @@ from smart_selects.db_fields import ChainedForeignKey
 class Categoria(models.Model):
     nombre = models.CharField('Categoria', max_length = 100)
     categoria = models.Manager()
+    slug = models.SlugField( unique=True)
 
     def __unicode__(self):
         return self.nombre
@@ -13,6 +14,7 @@ class Categoria(models.Model):
 class SubCategoria(models.Model):
     categoria = models.ForeignKey(Categoria)
     nombre = models.CharField('Sub Categoria', max_length = 100)
+    slug = models.SlugField( unique=True)
 
     def __unicode__(self):
         return self.nombre
@@ -39,6 +41,7 @@ class Producto(models.Model):
     destacado = models.PositiveIntegerField('Destacado Orden', blank = True, null = True)
     created_at = models.DateTimeField(auto_now_add = True)
     modified_at = models.DateTimeField(auto_now = True)
+    slug = models.SlugField(unique=True)
 
     producto = models.Manager()
     destacados = ProductoDestacadoManager()

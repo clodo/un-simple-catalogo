@@ -1,4 +1,4 @@
 from django.template.response import TemplateResponse
 
-def index(request):
-    return TemplateResponse(request, 'base.html', )
+def home(request):
+    return TemplateResponse(request, 'tradeco/home.html', )

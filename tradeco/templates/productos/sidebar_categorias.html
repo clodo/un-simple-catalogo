@@ -1,0 +1,21 @@
+<div class="box">
+<div class="box-heading">Categorias</div>
+<div class="box-content box-category">
+    <ul id="custom_accordion">
+    {% for categoria in categorias %}
+    <li class="category25">
+        {% if categoria.subcategoria_set.all %}
+            <a  class="cuuchild"  href="{% url 'productos.views.productos' categoria.slug %}">{{ categoria.nombre }}</a> <span class="down"></span>
+            {% for subcategoria in categoria.subcategoria_set.all %}
+            <ul>
+                <li><a href="{% url 'productos.views.productos' categoria.slug subcategoria.slug %}">{{ subcategoria.nombre }}</a></li>
+            </ul>
+        {% endfor %}
+        {% else %}
+            <a class="nochild" href="{% url 'productos.views.productos' categoria.slug %}">{{ categoria.nombre }}</a>
+        {% endif %}
+    </li>
+    {% endfor %}
+    </ul>
+</div>
+</div>

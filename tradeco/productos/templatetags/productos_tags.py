@@ -9,6 +9,11 @@ def menu_categorias():
     categorias = Categoria.categoria.all()
     return {'categorias': categorias}
 
+@register.inclusion_tag('productos/sidebar_categorias.html')
+def sidebar_categorias():
+    categorias = Categoria.categoria.all()
+    return {'categorias': categorias}
+
 @register.inclusion_tag('productos/productos_destacados.html')
 def productos_destacados():
     destacados = Producto.destacados.all()

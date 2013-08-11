@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<!--Breadcrumb Part Start-->
+<div class="breadcrumb"> 
+    {% for e in breadcrumb %}
+    <a href="{{ e.1 }}">{{e.0}}</a> 
+    {% if not forloop.last %} » {% endif %}
+    {% endfor %}
+
+</div>
+<!--Breadcrumb Part End-->
+<h1>{{ titulo }}</h1>
+
+<div class="product-filter">
+    <div class="display grid-view"><b>Display:</b> 
+        <span class="list1-icon" title="Grid View">Grid</span>
+        <a href="" class="grid-icon" title="List View" id="set-list-view">List</a>
+    </div>
+
+    <div class="display list-view" style="display:none"><b>Display:</b> 
+        <a href="" class="list-icon" title="Grid View" id="set-grid-view">Grid</a>
+        <span class="grid1-icon" title="List View">List</span>
+    </div>
+
+</div>
+<!--Product Grid Start-->
+<div class="product-grid grid-view">
+    {% for producto in productos %}
+    <div>
+        <div class="image"><a href="#"><img src="{{ producto.thumbnail.url }}" alt="{{ producto.titulo }}" /></a></div>
+        <div class="name"><a href="product.html">{{ producto.titulo }}</a></div>
+    </div>
+    {% endfor %}
+</div>
+<!--Product Grid End-->
+<div class="product-list list-view" style="display:none">
+    {% for producto in productos %}
+    <div>
+        <div class="left">
+        <div class="image"><a href="#"><img src="{{ producto.thumbnail.url }}" alt="{{ producto.titulo }}" /></a></div>
+        <div class="name"><a href="product.html">{{ producto.titulo }}</a></div>
+        <div class="description">{{ producto.descripcion }}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<!--Pagination Part Start-->
+<div class="pagination">
+<div class="links"> <b>1</b> <a href="#">2</a> <a href="#">&gt;</a> <a href="#">&gt;|</a></div>
+<div class="results">Showing 1 to 15 of 16 (2 Pages)</div>
+</div>
+<!--Pagination Part End-->
+
+<script>
+    $(function() {
+        $('#set-grid-view').click(function(e) {
+            $('.grid-view').show();
+            $('.list-view').hide();
+            e.preventDefault();
+        });
+
+        $('#set-list-view').click(function(e) {
+            $('.grid-view').hide();
+            $('.list-view').show();
+            e.preventDefault();
+        });
+    })
+</script>
+{% endblock %}

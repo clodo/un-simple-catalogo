@@ -33,57 +33,89 @@
   <!-- Header Parts Start-->
   <div id="header">
     <!-- Top Right part Links-->
-    <div id="logo"><a href="index.html"><img src="{{ STATIC_URL }}img/logo.png" title="ecommerce Html Template" alt="ecommerce Html Template" /></a></div>
+    <div id="logo"><a href="/"><img src="{{ STATIC_URL }}img/logo.png" title="ecommerce Html Template" alt="ecommerce Html Template" /></a></div>
   </div>
   <!--Top Navigation Start-->
     {% menu_categorias %}
   <!--Top Navigation Start-->
   <div id="container">
     <!--Left Part-->
-    <!--Left End-->
-    <!--Middle Part Start-->
-    <div id="content">
-      <!--Slideshow Part Start-->
-      <div class="slider-wrapper">
-        <div id="slideshow" class="nivoSlider"> <a href="#"><img src="{{ STATIC_URL }}img/slider/slider-1.jpg" alt="slideshow-1" /></a> <a href="#"><img src="{{ STATIC_URL }}img/slider/slider-2.jpg" alt="slideshow-2" /></a> <a href="#"><img src="{{ STATIC_URL }}img/slider/slider-3.jpg" alt="slideshow-3" /></a> <a href="#"><img src="{{ STATIC_URL }}img/slider/slider-4.jpg" alt="slideshow-4" /></a> </div>
-      </div>
-      <script type="text/javascript">
-$(document).ready(function() {
-	$('#slideshow').nivoSlider();
-});
-</script>
-      <!--Slideshow Part End-->
-      <!--Featured Product Part Start-->
+    <div id="column-left">
+      <!--Categories Part Start-->
+        {% sidebar_categorias %}
+      <!--Categories Part End-->
+      <!--Latest Product Start-->
       <div class="box">
-          {% productos_destacados %}
+        <div class="box-heading">Latest</div>
+        <div class="box-content">
+          <div class="box-product">
+            <div>
+              <div class="image"><a href="product.html"><img src="image/product/samsung_tab_1-60x60.jpg" alt="Chair Swing" /></a></div>
+              <div class="name"><a href="product.html">Chair Swing</a></div>
+              <div class="price"> $236.99 </div>
+              <div class="rating"><img src="image/stars-3.png" alt="Based on 1 reviews." /></div>
+            </div>
+            <div>
+              <div class="image"><a href="product.html"><img src="image/product/ipod_classic_1-60x60.jpg" alt="iPad Classic" /></a></div>
+              <div class="name"><a href="product.html">iPad Classic</a></div>
+              <div class="price"> $119.50 </div>
+              <div class="rating"><img src="image/stars-0.png" alt="Based on 0 reviews." /></div>
+            </div>
+            <div>
+              <div class="image"><a href="product.html"><img src="image/product/hp_1-60x60.jpg" alt="Casual Saddle Shoes" /></a></div>
+              <div class="name"><a href="product.html">Casual Saddle Shoes</a></div>
+              <div class="price"> $119.50 </div>
+              <div class="rating"><img src="image/stars-3.png" alt="Based on 3 reviews." /></div>
+            </div>
+            <div>
+              <div class="image"><a href="product.html"><img src="image/product/sony_vaio_1-60x60.jpg" alt="Silver Cuff Bracelet" /></a></div>
+              <div class="name"><a href="product.html">Silver Cuff Bracelet</a></div>
+              <div class="price"> $1,177.00 </div>
+              <div class="rating"><img src="image/stars-0.png" alt="Based on 0 reviews." /></div>
+            </div>
+            <div>
+              <div class="image"><a href="product.html"><img src="image/product/macbook_pro_1-60x60.jpg" alt="MacBook Pro" /></a></div>
+              <div class="name"><a href="product.html">MacBook Pro</a></div>
+              <div class="price"> $2,000.00 </div>
+              <div class="rating"><img src="image/stars-5.png" alt="Based on 5 reviews." /></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!--Featured Product Part End-->
+      <!--Latest Product End-->
+      <!--Specials Product Start-->
+      <div class="box">
+        <div class="box-heading">Specials</div>
+        <div class="box-content">
+          <div class="box-product">
+            <div>
+              <div class="image"><a href="product.html"><img src="image/product/apple_cinema_30-60x60.jpg" alt="Apple Tablet Retina" /></a></div>
+              <div class="name"><a href="product.html">Apple Tablet Retina</a></div>
+              <div class="price"> <span class="price-old">$119.50</span> <span class="price-new">$107.75</span> </div>
+              <div class="rating"><img src="image/stars-0.png" alt="Based on 0 reviews." /></div>
+              <div class="cart">
+                <input type="button" value="Add to Cart" onClick="addToCart('42');" class="button" />
+              </div>
+            </div>
+            <div>
+              <div class="image"><a href="product.html"><img src="image/product/canon_eos_5d_1-60x60.jpg" alt="Canon Digital Camera" /></a></div>
+              <div class="name"><a href="product.html">Canon Digital Camera</a></div>
+              <div class="price"> <span class="price-old">$119.50</span> <span class="price-new">$96.00</span> </div>
+              <div class="rating"><img src="image/stars-0.png" alt="Based on 0 reviews." /></div>
+              <div class="cart">
+                <input type="button" value="Add to Cart" onClick="addToCart('30');" class="button" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Specials Product End-->
     </div>
-    <!--Middle Part End-->
-    <div class="clear"></div>
-    <div class="social-part">
-      <!--Facebook Fun Box Start-->
-      <div id="facebook" >
-      <div class="facebook-inner">
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-        <div class="fb-like-box" data-href="http://www.facebook.com/160281810726316" data-width="585" data-show-faces="true" data-stream="false" data-header="false" data-border-color="#fff"></div>
-      </div></div>
-      <!--Facebook Fun Box End-->
-      <!--Twitter Feeds Box Start-->
-      <div id="twitter_footer">
-<a class="twitter-timeline" href="https://twitter.com/harnishdesign" data-chrome="noheader nofooter noborders noscrollbar transparent" data-theme="light" data-tweet-limit="2" data-related="twitterapi,twitter" data-aria-polite="assertive" data-widget-id="347621595801608192">Tweets by @harnishdesign</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
-      <!--Twitter Feeds Box End-->
+
+    <div id="content">
+    {% block content %}
+    {% endblock %}
     </div>
-  </div>
 </div>
 <!--Footer Part Start-->
 <div id="footer">
