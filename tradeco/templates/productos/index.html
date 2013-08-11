@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load url from future %}
 {% block content %}
 <!--Breadcrumb Part Start-->
 <div class="breadcrumb"> 
@@ -27,8 +28,8 @@
 <div class="product-grid grid-view">
     {% for producto in productos %}
     <div>
-        <div class="image"><a href="#"><img src="{{ producto.thumbnail.url }}" alt="{{ producto.titulo }}" /></a></div>
-        <div class="name"><a href="product.html">{{ producto.titulo }}</a></div>
+        <div class="image"><a href="{% url 'productos.views.detalle' producto.slug %}"><img src="{{ producto.thumbnail.url }}" alt="{{ producto.titulo }}" /></a></div>
+        <div class="name"><a href="{% url 'productos.views.detalle' producto.slug %}">{{ producto.titulo }}</a></div>
     </div>
     {% endfor %}
 </div>

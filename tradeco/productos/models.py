@@ -1,6 +1,6 @@
 from django.db import models
 from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFit
+from imagekit.processors import ResizeToFit, Resize
 from smart_selects.db_fields import ChainedForeignKey 
 
 class Categoria(models.Model):
@@ -49,14 +49,18 @@ class Producto(models.Model):
     def thumbnail(self):
         return self.productoimagen_set.order_by('id')[0].thumbnail if len(self.productoimagen_set.all()) else None
 
+    def imagenes(self):
+        return self.productoimagen_set.order_by('id')
+
     def __unicode__(self):
         return self.descripcion
 
 class ProductoImagen(models.Model):
     producto = models.ForeignKey(Producto)
     imagen = models.ImageField(upload_to='productos')
-    thumbnail = ImageSpecField([ResizeToFit(152, 152)], source='imagen', options={'quality':60})
-    detalle = ImageSpecField([ResizeToFit(320, 430)], source='imagen')
+    thumbnail = ImageSpecField([Resize(152, 152)], source='imagen', options={'quality':60})
+    detalle = ImageSpecField([Resize(350, 350)], source='imagen')
+    small = ImageSpecField([Resize(62, 62)], source='imagen', options={'quality':60})
 
     def __unicode__(self):
         return '{0}:'.format(self.id)

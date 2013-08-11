@@ -3,11 +3,11 @@
     <ul>
         <li class="home"><a  title="Home" href="/"><span>Home</span></a></li>
         {% for categoria in categorias %}
-        <li><a href="{% url 'productos.views.productos' categoria.slug %}">{{ categoria.nombre }}</a>
+        <li><a href="{% url 'productos.views.index' categoria.slug %}">{{ categoria.nombre }}</a>
         {% for subcategoria in categoria.subcategoria_set.all %}
         <div>
             <ul>
-                <li><a href="{% url 'productos.views.productos' categoria.slug subcategoria.slug %}">{{ subcategoria.nombre }}</a></li>
+                <li><a href="{% url 'productos.views.index' categoria.slug subcategoria.slug %}">{{ subcategoria.nombre }}</a></li>
             </ul>
         </div>
         {% endfor %}

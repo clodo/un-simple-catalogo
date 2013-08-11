@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% block content %}
+<!--Breadcrumb Part Start-->
+<div class="breadcrumb"> <a href="index.html">Home</a> » <a href="#">iPhone</a></div>
+<!--Breadcrumb Part End-->
+<div class="product-info">
+<div class="left">
+    <div class="image"> 
+        <a href="{{ producto.imagenes.0.imagen.url }}" title="iPhone" class="cloud-zoom colorbox" id='zoom1' rel="adjustX: 0, adjustY:0, tint:'#000000',tintOpacity:0.2, zoomWidth:360, position:'inside', showTitle:false"> 
+            <img src="{{ producto.imagenes.0.detalle.url }}" title="#" alt="#" id="image" />
+        </a> 
+    </div>
+    <div class="image-additional"> 
+        {% for imagen in producto.imagenes %}
+            <a href="{{imagen.imagen.url }}" title="#" class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{ imagen.detalle.url }}' "> 
+                <img src="{{ imagen.small.url }}" width="62" title="{{ producto.titulo }}" alt="{{ product.titulo}}" />
+            </a> 
+        {% endfor %}
+    </div>
+</div>
+<div class="right">
+    <h1>{{ producto.titulo }}<h1>
+    <div class="description"> 
+        <span>Categoria:</span> <a href="#">{{ producto.categoria.nombre }}</a><br>
+        {% if producto.sub_categoria %}
+            <span>SubCategoria:</span> <a href="#">{{ producto.sub_categoria.nombre }}</a><br>
+        {% endif %}
+        <span>Codigo de Producto:</span> {{ producto.codigo }}<br>
+    </div>
+</div>
+</div>
+<!-- Tabs Start -->
+<div id="tabs" class="htabs"> <a href="#tab-description">Descripcion</a> <a href="#tab-review">Reviews</a> </div>
+<div id="tab-description" class="tab-content">
+<p>iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.</p>
+<h3>Features:</h3>
+<p>Unrivaled display performance</p>
+<ul>
+    <li> 30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.</li>
+    <li> Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.</li>
+    <li> Wide-format design for simultaneous display of two full pages of text and graphics.</li>
+    <li> Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks</li>
+    <li> Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.</li>
+    <li> Lightning-fast pixel response for full-motion digital video playback.</li>
+    <li> Support for 16.7 million saturated colors, for use in all graphics-intensive applications.</li>
+</ul>
+</div>
+<div class="tab-content" id="tab-review">
+<div class="review-list">
+    <div class="author"><b>Harnish</b> on  13/02/2013</div>
+    <div class="rating"><img alt="1 reviews" src="img/stars-3.png"></div>
+    <div class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled.</div>
+</div>
+<h2 id="review-title">Write a review</h2>
+<br>
+<b>Your Name:</b><br>
+<input type="text" value="" name="name">
+<br>
+<br>
+<b>Your Review:</b>
+<textarea style="width: 98%;" rows="8" cols="40" name="text"></textarea>
+<span style="font-size: 11px;"><span style="color: #FF0000;">Note:</span> HTML is not translated!</span><br>
+<br>
+<b>Rating:</b>&nbsp;
+<input type="radio" value="1" name="rating">
+&nbsp;
+<input type="radio" value="2" name="rating">
+&nbsp;
+<input type="radio" value="3" name="rating">
+&nbsp;
+<input type="radio" value="4" name="rating">
+&nbsp;
+<input type="radio" value="5" name="rating">
+<br>
+<br>
+<div class="buttons">
+    <div class="right"><a class="button" id="button-review">Continue</a></div>
+</div>
+</div>
+<!-- Tabs End -->
+<!-- Related Products Start -->
+<div class="box">
+<div class="box-heading">Productos Relacionados</div>
+<div class="box-content">
+    <div class="box-product">
+    {% for relacionado in relacionados %}
+        <div>
+            <div class="image">
+                <a href="{% url 'productos.views.detalle' producto.slug %}">
+                    <img src="{{ relacionado.thumbnail.url }}" alt="{{ relacionado.titulo }}" />
+                </a>
+            </div>
+            <div class="name"><a href="{% url 'productos.views.detalle' producto.slug %}">{{ relacionado.titulo }}</a></div>
+        </div>
+    {% endfor %}
+</div>
+</div>
+<!-- Related Products End -->
+{% endblock %}
