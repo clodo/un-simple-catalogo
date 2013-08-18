@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'smart_selects',
     'grappelli',
     'django.contrib.admin',
+    'stuff',
 )
 
 # A sample logging configuration. The only tangible logging

@@ -1,0 +1,12 @@
+<div class="slider-wrapper">
+
+    <div id="slideshow" class="nivoSlider"> 
+        {% for banner in banners %}
+            <a href="#"> <img src="{{ banner.home.url }}" alt="slideshow-1" /></a> 
+        {% endfor %}
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() { $('#slideshow').nivoSlider(); });
+</script>

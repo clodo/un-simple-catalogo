@@ -6,12 +6,12 @@ register = template.Library()
 
 @register.inclusion_tag('productos/menu_categorias.html')
 def menu_categorias():
-    categorias = Categoria.categoria.all()
+    categorias = Categoria.con_productos.all()
     return {'categorias': categorias}
 
 @register.inclusion_tag('productos/sidebar_categorias.html')
 def sidebar_categorias():
-    categorias = Categoria.categoria.all()
+    categorias = Categoria.con_productos.all()
     return {'categorias': categorias}
 
 @register.inclusion_tag('productos/destacados.html')

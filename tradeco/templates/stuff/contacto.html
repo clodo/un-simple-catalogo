@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+<!--Breadcrumb Part Start-->
+<div class="breadcrumb"> <a href="index.html">Home</a> » <a href="contact-us.html">Contact Us</a> </div>
+<!--Breadcrumb Part End-->
+<h1>Contactenos</h1>
+<h2>Ubicacion</h2>
+<div class="contact-info">
+<div class="content">
+    <div class="left">
+    <h4><b>Direccion:</b></h4>
+    <p>401, Dhaval Plaza, New Duperi Road, New Mumbai, Maharashtra<br>
+        Address 1</p>
+    </div>
+    <div class="right">
+    <h4><b>Telefono:</b></h4>
+    123456789<br>
+    <br>
+    </div>
+</div>
+</div>
+<h2>Formulario de Contacto</h2>
+<form action="{% url 'stuff.views.contacto' %}" method="post" >
+    {% csrf_token %}
+    <div class="content"> 
+        <b>Nombre:</b><br>
+        {{ form.nombre }}
+        {{ form.nombre.errors }}
+        <br>
+        <br>
+
+        <b>Direccion de E-Mail:</b><br>
+        {{ form.email }}
+        {{ form.email.errors }}
+        <br>
+        <br>
+
+        <b>Telefono:</b><br>
+        {{ form.telefono }}
+        {{ form.telefono.errors }}
+        <br>
+        <br>
+
+        <b>Asunto:</b><br>
+        {{ form.asunto }}
+        {{ form.asunto.errors }}
+        <br>
+        <br>
+
+        <b>Consulta:</b><br>
+        {{ form.consulta }}
+        {{ form.consulta.errors }}
+    </div>
+
+    <div class="buttons">
+        <input type="submit" class="button" value="Enviar">
+    </div>
+</form>
+{% endblock %}

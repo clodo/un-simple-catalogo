@@ -1,12 +1,19 @@
 from django.db import models
+from django.db.models import Count
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, Resize
 from smart_selects.db_fields import ChainedForeignKey 
+
+class CategoriaConProductosManager(models.Manager):
+    def get_query_set(self):
+        return super(CategoriaConProductosManager, self).get_query_set() \
+                .annotate(productos = Count('producto')).filter(productos__gt = 0)
 
 class Categoria(models.Model):
     nombre = models.CharField('Categoria', max_length = 100)
     categoria = models.Manager()
     slug = models.SlugField( unique=True)
+    con_productos = CategoriaConProductosManager()
 
     def __unicode__(self):
         return self.nombre
