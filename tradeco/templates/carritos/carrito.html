@@ -58,7 +58,7 @@
         </table>
       </div>
       <div class="buttons">
-        <div class="right"><a class="button" href="checkout.html">Hacer Pedido</a></div>
+        <div class="right"><a class="button" href="{% url 'carritos.views.checkout' %}">Hacer Pedido</a></div>
         <div class="center"><a class="button" href="{% url 'productos.views.index' %}">Continuar Comprando</a></div>
       </div>
     </div>

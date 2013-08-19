@@ -6,7 +6,8 @@ from django.template.response import TemplateResponse
 from django.shortcuts import get_object_or_404
 from django.http import Http404
 
-from models import (Producto, Carrito,) 
+from .models import (Producto, Carrito, Comprador,) 
+from .forms import CompradorForm
 
 from django.core.files.storage import default_storage
 
@@ -16,31 +17,38 @@ def carrito(request):
 
 def checkout(request):
     carrito = Carrito.objects.from_request(request, create = True)
-
     if request.method == 'POST':
-        carrito.hacer_pedido()
-        carrito.save()
+        form = CompradorForm(request.POST)
+        if form.is_valid():
+            comprador = form.save()
+            carrito.hacer_pedido(comprador)
+            carrito.save()
 
-        # EMAIL
-        body = render_to_string('carritos/checkout_email_comprador.html', 
-                {'items_per_negocios': items_per_negocios})
+            # EMAIL
+            # Comprador
+            body = render_to_string('carritos/checkout_email.html', {'carrito': carrito})
+            subject = 'Agora Hogar // Pedido'
+            msg = EmailMessage(subject, body, settings.EMAIL_HOST_USER, [comprador.email])
+            msg.content_subtype = "html"
+            msg.send()
 
-        subject = 'Mas Avellaneda // Comprador // Checkout'
-        msg = EmailMessage(subject, body, settings.EMAIL_HOST_USER, [request.user.email])
-        msg.content_subtype = "html"
-        msg.send()
+            # Admin
+            body = render_to_string('carritos/email_admin.html', {'carrito': carrito, 'comprador': comprador})
+            subject = 'Agora Hogar // Pedido'
+            msg = EmailMessage(subject, body, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER])
+            msg.content_subtype = "html"
+            msg.send()
 
-        #  - Admin
-        body = render_to_string('carritos/checkout_email_admin.html', 
-                {'items_per_negocios': items_per_negocios, 'comprador':request.user })
-        subject = 'Mas Avellaneda // Carrito // Checkout'
-        msg = EmailMessage(subject, body, settings.EMAIL_HOST_USER, [settings.EMAIL_HOST_USER])
-        msg.content_subtype = "html"
-        msg.send()
+            del request.session['carrito']
+            return redirect('carritos.views.checkout_gracias')
 
-        template = 'carritos/checkout_gracias.html'
+    else:
+        form = CompradorForm()
 
-    return TemplateResponse(request, 'carritos/checkout.html', {'carrito': carrito,  })
+    return TemplateResponse(request, 'carritos/checkout.html', {'carrito': carrito, 'form': form })
+
+def checkout_gracias(request):
+    return TemplateResponse(request, 'carritos/checkout_gracias.html')
 
 def actualizar_cantidad(request):
     carrito = Carrito.objects.from_request(request)

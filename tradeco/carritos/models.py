@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
+import datetime
 from django.db import models
 from productos.models import Producto
+
+class Comprador(models.Model):
+    nombre = models.CharField('Nombre', max_length = 100)
+    apellido = models.CharField('Apellido', max_length = 100)
+    email = models.EmailField('Email')
+    telefono = models.CharField('Telefono', max_length = 20)
 
 # https://bitbucket.org/chris1610/satchmo/wiki/Home
 class CarritoManager(models.Manager):
@@ -27,6 +34,7 @@ class CarritoManager(models.Manager):
         return carrito
 
 class Carrito(models.Model):
+    comprador = models.ForeignKey(Comprador, blank = True, null = True)
     checkout = models.BooleanField(default = False)
     objects = CarritoManager()
     fecha_creacion = models.DateTimeField(auto_now_add = True)
@@ -79,9 +87,10 @@ class Carrito(models.Model):
             item.precio_checkout = item.producto.precio
             item.save()
 
-    def hacer_pedido(self):
+    def hacer_pedido(self, comprador):
         self._set_unit_prices()
         self.fecha_checkout = datetime.datetime.now()
+        self.comprador = comprador
         self.checkout = True
 
 class CarritoItem(models.Model):

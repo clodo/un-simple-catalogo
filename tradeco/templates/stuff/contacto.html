@@ -25,13 +25,13 @@
 <form action="{% url 'stuff.views.contacto' %}" method="post" >
     {% csrf_token %}
     <div class="content"> 
-        <b>Nombre:</b><br>
+        <span class="required">*</span> <b>Nombre:</b><br>
         {{ form.nombre }}
         {{ form.nombre.errors }}
         <br>
         <br>
 
-        <b>Direccion de E-Mail:</b><br>
+        <span class="required">*</span> <b>Direccion de E-Mail:</b><br>
         {{ form.email }}
         {{ form.email.errors }}
         <br>
@@ -43,13 +43,13 @@
         <br>
         <br>
 
-        <b>Asunto:</b><br>
+        <span class="required">*</span> <b>Asunto:</b><br>
         {{ form.asunto }}
         {{ form.asunto.errors }}
         <br>
         <br>
 
-        <b>Consulta:</b><br>
+        <span class="required">*</span> <b>Consulta:</b><br>
         {{ form.consulta }}
         {{ form.consulta.errors }}
     </div>

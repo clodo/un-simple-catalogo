@@ -4,74 +4,83 @@
 
 {% block content %}
       <!--Breadcrumb Part Start-->
-      <div class="breadcrumb"> <a href="index.html">Home</a> » <a href="">Shopping Cart</a></div>
+      <div class="breadcrumb"> 
+          <a href="{% url 'tradeco.views.home' %}">Home</a> » 
+          <a href="{% url 'carritos.views.carrito' %}">Carrito</a> » 
+          <a href="{% url 'carritos.views.checkout' %}">Hacer Pedido</a>
+      </div>
       <!--Breadcrumb Part End-->
-      <h1>Checkout</h1>
-        <div class="checkout-heading"> Account & Billing Details</div>
+      <h1>Hacer pedido</h1>
+        <div class="checkout-heading">Detalles del usuario</div>
+          <form action="{% url 'carritos.views.checkout' %}" method="post">
+          {% csrf_token %}
           <table class="form">
             <tbody>
               <tr>
-                <td><span class="required">*</span> First Name:</td>
-                <td><input type="text" class="large-field" value="" name="firstname"></td>
+                <td>Nombre:</td>
+                <td>
+                    {{ form.nombre }}
+                    {{ form.nombre.errors }}
+                </td>
               </tr>
               <tr>
-                <td><span class="required">*</span> Last Name:</td>
-                <td><input type="text" class="large-field" value="" name="lastname"></td>
+                <td>Apellido:</td>
+                <td>
+                    {{ form.apellido }}
+                    {{ form.apellido.errors }}
+                </td>
               </tr>
               <tr>
-                <td><span class="required">*</span> Address 1:</td>
-                <td><input type="text" class="large-field" value="" name="address_1"></td>
+                <td>Email:</td>
+                <td>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </td>
               </tr>
               <tr>
-                <td><span class="required">*</span> City:</td>
-                <td><input type="text" class="large-field" value="" name="city"></td>
-              </tr>
-              <tr>
-                <td><span class="required" id="payment-postcode-required">*</span> Post Code:</td>
-                <td><input type="text" class="large-field" value="" name="postcode"></td>
+                <td>Telefono:</td>
+                <td>
+                    {{ form.telefono }}
+                    {{ form.telefono.errors }}
+                </td>
               </tr>
             </tbody>
           </table>
+        <div class="checkout-heading">Productos</div>
           <div class="checkout-product">
             <table>
               <thead>
                 <tr>
-                  <td class="name">Product Name</td>
-                  <td class="model">Model</td>
-                  <td class="quantity">Quantity</td>
-                  <td class="price">Price</td>
+                  <td class="name">Producto</td>
+                  <td class="model">Codigo</td>
+                  <td class="quantity">Cantidad</td>
+                  <td class="price">Precio Unitario</td>
                   <td class="total">Total</td>
                 </tr>
               </thead>
               <tbody>
+                {% for item in carrito.items %}
                 <tr>
-                  <td class="name"><a href="#">Canon EOS 5D</a></td>
-                  <td class="model">Product 3</td>
-                  <td class="quantity">1</td>
-                  <td class="price">£61.33</td>
-                  <td class="total">£61.33</td>
+                  <td class="name"><a href="{% url 'productos.views.detalle' item.producto.slug %}" target="_blank">{{ item.producto.titulo }}</a></td>
+                  <td class="model">{{ item.producto.codigo }}</td>
+                  <td class="quantity">{{ item.cantidad }}</td>
+                  <td class="price">${{ item.precio|humanize_precio }}</td>
+                  <td class="total">${{ item.precio_total|humanize_precio }}</td>
                 </tr>
+                {% endfor %}
               </tbody>
               <tfoot>
                 <tr>
-                  <td class="price" colspan="4"><b>Sub-Total:</b></td>
-                  <td class="total">£51.11</td>
-                </tr>
-                <tr>
-                  <td class="price" colspan="4"><b>Flat Shipping Rate:</b></td>
-                  <td class="total">£3.19</td>
-                </tr>
-                <tr>
                   <td class="price" colspan="4"><b>Total:</b></td>
-                  <td class="total">£66.37</td>
+                  <td class="total">${{ carrito.total_precio|humanize_precio }}</td>
                 </tr>
               </tfoot>
             </table>
           </div>
           <div class="buttons">
             <div class="right">
-              <input type="button" class="button" id="button-confirm" value="Confirm Order">
+              <input type="submit" class="button" id="button-confirm" value="Confirmar">
             </div>
           </div>
-    </div>
+        </form>
 {% endblock %}

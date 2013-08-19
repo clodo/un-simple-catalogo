@@ -3,27 +3,18 @@
 
 {% block content %}
 <div id="main-content" class="full-width page-content">
-    <h2 class="page-title">Mi Carrito</h2>
-    <div class="shadow-wrapper margin1">
-            <div class="left-shadow"></div>
-            <div class="mid-shadow"></div>
-            <div class="right-shadow"></div>
-    </div>
+    <h1 class="page-title">Se hizo el pedido!</h1>
 
     <div class="msg success"><p>Gracias por la compra!. Se ha enviado el pedido.</p></div> 
 
     <div>
-        <p>
-        Se le envió un detalle con los items y los mails de cada negocio.
-        También se la ha enviado un email a cada negocio con su pedido para que se comuniquen entre ustedes.
+        <p> Se le envió un detalle con los items.  </p>
+        <p> En la brevedad un representante se va a estar comunicando con usted.  </p>
+
+        <p> Muchas gracias
+            <br>Atte, 
+            <br>Agora Hogar
         </p>
     </div>
-    <div class="tag-title-wrap clearfix">
-            <h3 class="tag-title-small">Detalle</h3>
-    </div>
-
-    {% if items_per_negocios %}
-            {% include 'store/_carrito_items.html' %}
-    {% endif %}
 </div>
 {% endblock %}
