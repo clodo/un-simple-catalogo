@@ -2,3 +2,7 @@ ul.errorlist {
     margin-top: 5px;
     color: red;
 }
+
+table#total td{
+    font-size: 14px;
+}

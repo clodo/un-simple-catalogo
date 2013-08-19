@@ -48,6 +48,7 @@ class Producto(models.Model):
     destacado = models.PositiveIntegerField('Destacado Orden', blank = True, null = True)
     created_at = models.DateTimeField(auto_now_add = True)
     modified_at = models.DateTimeField(auto_now = True)
+    precio = models.DecimalField(max_digits = 8, decimal_places = 2)
     slug = models.SlugField(unique=True)
 
     producto = models.Manager()
@@ -55,6 +56,9 @@ class Producto(models.Model):
 
     def thumbnail(self):
         return self.productoimagen_set.order_by('id')[0].thumbnail if len(self.productoimagen_set.all()) else None
+
+    def small(self):
+        return self.productoimagen_set.order_by('id')[0].small if len(self.productoimagen_set.all()) else None
 
     def imagenes(self):
         return self.productoimagen_set.order_by('id')

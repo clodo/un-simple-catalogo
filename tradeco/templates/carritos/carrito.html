@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load url from future %}
+{% load productos_tags %}
+
+{% block content %}
+      <!--Breadcrumb Part Start-->
+      <div class="breadcrumb"> <a href="{% url 'tradeco.views.home' %}">Home</a> » <a href="{% url 'carritos.views.carrito' %}">Carrito</a></div>
+      <!--Breadcrumb Part End-->
+      <h1>Carrito</h1>
+      <form enctype="multipart/form-data" method="post" action="">
+        <div class="cart-info">
+          <table>
+            <thead>
+              <tr>
+                <td class="image">Imagen</td>
+                <td class="name">Producto</td>
+                <td class="model">Codigo</td>
+                <td class="quantity">Cantidad</td>
+                <td class="price">Precio Unitario</td>
+                <td class="total">Total</td>
+              </tr>
+            </thead>
+            <tbody>
+                {% for item in carrito.items %}
+                    <tr>
+                        <td class="image">
+                            <a href="{% url 'productos.views.detalle' item.producto.slug %}" target="_blank">
+                                <img title="{{ item.producto.titulo }}" 
+                                    alt="{{ item.producto.titulo }}" 
+                                    src="{{ item.producto.small.url }}">
+                            </a>
+                        </td>
+                        <td class="name"><a href="{% url 'productos.views.detalle' item.producto.slug %}" target="_blank">{{ item.producto.titulo }}</a></td>
+                        <td class="model">{{ item.producto.codigo }}</td>
+                        <td class="quantity">
+                            <form action="" method="post">
+                                <input type="text" size="1" value="{{ item.cantidad }}" name="cantidad" class="w30">
+                                {% csrf_token %}
+                                <input type="hidden" name="item_id" value="{{ item.id }}" />
+                                &nbsp;<img class="update-item" title="Actualizar" alt="Actualizar" src="{{ STATIC_URL }}img/update.png">
+                                &nbsp;<img class="remove-item" title="Borrar" alt="Borrar" src="{{ STATIC_URL }}img/remove.png">
+                            </form>
+                        </td>
+                        <td class="price">${{ item.precio|humanize_precio }}</td>
+                        <td class="total">${{ item.precio_total|humanize_precio }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </form>
+      <div class="cart-total">
+        <table id="total">
+          <tbody>
+            <tr>
+              <td class="right"><b>Total:</b></td>
+                <td class="right">${{ carrito.total_precio|humanize_precio }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="buttons">
+        <div class="right"><a class="button" href="checkout.html">Hacer Pedido</a></div>
+        <div class="center"><a class="button" href="{% url 'productos.views.index' %}">Continuar Comprando</a></div>
+      </div>
+    </div>
+<script>
+    $(function() {
+        var removeUrl = "{% url 'carritos.views.borrar_item' %}";
+        $('.remove-item').click(function() {
+            $form = $(this).parents('form');
+            $form.attr('action', removeUrl);
+            $form.submit();
+        });
+
+        var updateUrl = "{% url 'carritos.views.actualizar_cantidad' %}";
+        $('.update-item').click(function() {
+            $form = $(this).parents('form');
+            $form.attr('action', updateUrl);
+            $form.submit();
+        });
+    });
+</script>
+{% endblock %}

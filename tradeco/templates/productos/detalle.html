@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load productos_tags %}
+
 {% block content %}
 <!--Breadcrumb Part Start-->
 <div class="breadcrumb"> 
@@ -33,6 +35,19 @@
         {% endif %}
         <span>Codigo de Producto:</span> {{ producto.codigo }}<br>
     </div>
+
+          <div class="price">Precio: 
+              <div class="price-tag">${{ producto.precio|humanize_precio }}</div>
+          </div>
+          <div class="cart">
+              <form action="{% url 'carritos.views.agregar_producto' %}" method="post">
+                <input type="text" value="1" size="2" name="cantidad" class="w30" id="qty">
+                <div class="clear"></div>
+                {% csrf_token %}
+                <input type="hidden" value="{{ producto.id }}" name="producto_id" />
+                <input type="submit" class="button" id="button-cart" value="Agregar al Carrito">
+              </form>
+          </div>
 </div>
 </div>
 <!-- Tabs Start -->

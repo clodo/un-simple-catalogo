@@ -8,6 +8,7 @@ urlpatterns = patterns('',
     url(r'^$', 'tradeco.views.home'),
     url(r'^contacto/gracias', 'stuff.views.contacto_gracias'),
     url(r'^contacto/', 'stuff.views.contacto'),
+    url(r'^carrito/', include('carritos.urls')),
     url(r'^productos/', include('productos.urls')),
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),

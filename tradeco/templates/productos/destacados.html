@@ -4,11 +4,11 @@
     {% for destacado in destacados %}
         <div>
             <div class="image">
-                <a href="{% url 'productos.views.detalle' producto.slug %}">
+                <a href="{% url 'productos.views.detalle' destacado.slug %}">
                     <img src="{{ destacado.thumbnail.url }}" alt="{{ destacado.titulo }}" />
                 </a>
             </div>
-            <div class="name"><a href="{% url 'productos.views.detalle' producto.slug %}">{{ destacado.titulo }}</a></div>
+            <div class="name"><a href="{% url 'productos.views.detalle' destacado.slug %}">{{ destacado.titulo }}</a></div>
         </div>
     {% endfor %}
     </div>

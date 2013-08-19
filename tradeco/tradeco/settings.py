@@ -120,6 +120,7 @@ INSTALLED_APPS = (
     'grappelli',
     'django.contrib.admin',
     'stuff',
+    'carritos',
 )
 
 # A sample logging configuration. The only tangible logging
