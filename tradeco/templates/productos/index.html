@@ -47,6 +47,7 @@
 
 
 <!--Pagination Part Start-->
+{% if paginador.num_pages > 1 %}
 <div class="pagination">
     <div class="links"> 
         {% for p in paginador.page_range %}
@@ -58,6 +59,7 @@
         {% endfor %}
     </div>
 </div>
+{% endif %}
 <!--Pagination Part End-->
 
 <script>
