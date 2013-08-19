@@ -7,7 +7,6 @@
       <div class="breadcrumb"> <a href="{% url 'tradeco.views.home' %}">Home</a> » <a href="{% url 'carritos.views.carrito' %}">Carrito</a></div>
       <!--Breadcrumb Part End-->
       <h1>Carrito</h1>
-      <form enctype="multipart/form-data" method="post" action="">
         <div class="cart-info">
           <table>
             <thead>
@@ -48,7 +47,6 @@
             </tbody>
           </table>
         </div>
-      </form>
       <div class="cart-total">
         <table id="total">
           <tbody>
@@ -76,6 +74,7 @@
         var updateUrl = "{% url 'carritos.views.actualizar_cantidad' %}";
         $('.update-item').click(function() {
             $form = $(this).parents('form');
+            console.log($form);
             $form.attr('action', updateUrl);
             $form.submit();
         });

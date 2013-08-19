@@ -1,10 +1,5 @@
-import json 
-
 from django.conf import settings
-from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.mail import send_mail, EmailMessage
-from django.core.urlresolvers import reverse
-from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
@@ -17,22 +12,9 @@ from django.core.files.storage import default_storage
 
 def carrito(request):
     carrito = Carrito.objects.from_request(request, create = True)
-    template = 'carritos/carrito.html'
-    if request.is_ajax():
-        template = 'carritos/_carrito_items.html'
+    return TemplateResponse(request, 'carritos/carrito.html', {'carrito':carrito})
 
-        if request.POST.has_key('item-id'):
-            items_ids = request.POST.getlist('item-id')
-
-            if request.POST.has_key('cantidad-item'): 
-                items_cantidad = request.POST.getlist('cantidad-item')
-                for i in range(len(items_ids)):
-                    carrito.actualizar_item_cantidad(items_ids[i], items_cantidad[i])
-
-    return TemplateResponse(request, template, {'carrito':carrito})
-
-@login_required
-def carrito_checkout(request):
+def checkout(request):
     carrito = Carrito.objects.from_request(request, create = True)
     if not carrito.es_valido():
         return redirect('carritos.views.carrito')
