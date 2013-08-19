@@ -4,18 +4,20 @@
         <li class="home"><a  title="Home" href="/"><span>Home</span></a></li>
         {% for categoria in categorias %}
         <li><a href="{% url 'productos.views.index' categoria.slug %}">{{ categoria.nombre }}</a>
+            {% if categoria.subcategoria_set.all %}
         <div>
-            <ul>
-        {% for subcategoria in categoria.subcategoria_set.all %}
-                <li><a href="{% url 'productos.views.index' categoria.slug subcategoria.slug %}">{{ subcategoria.nombre }}</a></li>
-        {% endfor %}
-            </ul>
+                    <ul>
+                {% for subcategoria in categoria.subcategoria_set.all %}
+                        <li><a href="{% url 'productos.views.index' categoria.slug subcategoria.slug %}">{{ subcategoria.nombre }}</a></li>
+                {% endfor %}
+                    </ul>
         </div>
+            {% endif %}
         </li>
         {% endfor %}
 
-        <div class="right">
-            hola
-        </div>
+    </ul>
+    <ul style="float:right;">
+        <li><a  title="Contacto" href="{% url 'stuff.views.contacto' %}"><span>Contacto</span></a></li>
     </ul>
 </div>

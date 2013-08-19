@@ -45,6 +45,7 @@ class Producto(models.Model):
             null = True
     )
     descripcion = models.TextField(max_length = 250)
+    caracteristicas = models.TextField(max_length = 500)
     destacado = models.PositiveIntegerField('Destacado Orden', blank = True, null = True)
     created_at = models.DateTimeField(auto_now_add = True)
     modified_at = models.DateTimeField(auto_now = True)
