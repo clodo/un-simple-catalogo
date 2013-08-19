@@ -16,12 +16,7 @@ def carrito(request):
 
 def checkout(request):
     carrito = Carrito.objects.from_request(request, create = True)
-    if not carrito.es_valido():
-        return redirect('carritos.views.carrito')
 
-    checkout = True
-    template = 'carritos/carrito.html'
-    items_per_negocios = carrito.items_per_negocios()
     if request.method == 'POST':
         carrito.hacer_pedido()
         carrito.save()
@@ -32,7 +27,6 @@ def checkout(request):
 
         subject = 'Mas Avellaneda // Comprador // Checkout'
         msg = EmailMessage(subject, body, settings.EMAIL_HOST_USER, [request.user.email])
-
         msg.content_subtype = "html"
         msg.send()
 
@@ -44,11 +38,9 @@ def checkout(request):
         msg.content_subtype = "html"
         msg.send()
 
-        checkout = False
         template = 'carritos/checkout_gracias.html'
 
-    return TemplateResponse(request, template,
-            {'carrito': carrito, 'checkout' : checkout, 'detalle': True,'items_per_negocios': items_per_negocios })
+    return TemplateResponse(request, 'carritos/checkout.html', {'carrito': carrito,  })
 
 def actualizar_cantidad(request):
     carrito = Carrito.objects.from_request(request)

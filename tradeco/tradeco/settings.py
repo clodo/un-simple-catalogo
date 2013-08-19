@@ -154,7 +154,7 @@ LOGGING = {
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'rustico@elgalpondebanquito.com.ar'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = 'emilia1986'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 BASE_URL = 'tradeco.com'
