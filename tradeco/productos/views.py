@@ -1,5 +1,6 @@
 from django.template.response import TemplateResponse
 from django.core.urlresolvers import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import get_object_or_404
 from .models import Producto
 
@@ -20,8 +21,20 @@ def index(request, categoria = None, sub_categoria = None):
                 sub_categoria_url = reverse('productos.views.index', args=(categoria, sub_categoria))
                 breadcrumb.append((productos[0].sub_categoria.nombre, sub_categoria_url))
 
+    # Paginador
+    pagina = request.GET['pagina'] if request.GET.has_key('pagina') else 1
+    paginador = Paginator(productos, 1) 
+    try:
+        pagina = int(pagina)
+        productos = paginador.page(pagina)
+    except (PageNotAnInteger, ValueError):
+        # If page is not an integer, deliver first page.
+        productos = paginador.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        productos = paginador.page(paginador.num_pages)
 
-    return TemplateResponse(request, 'productos/index.html', { 'productos' : productos, 'titulo': titulo, 'breadcrumb': breadcrumb } )
+    return TemplateResponse(request, 'productos/index.html', { 'productos' : productos, 'titulo': titulo, 'breadcrumb': breadcrumb, 'paginador': paginador, 'pagina': pagina} )
 
 def detalle(request, producto):
     producto = get_object_or_404(Producto, slug = producto)
