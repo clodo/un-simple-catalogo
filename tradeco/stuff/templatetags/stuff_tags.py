@@ -8,3 +8,4 @@ register = template.Library()
 def banners():
     banners = Banner.objects.all()
     return {'banners': banners}
+

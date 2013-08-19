@@ -33,7 +33,11 @@
                         <td class="model">{{ item.producto.codigo }}</td>
                         <td class="quantity">
                             <form action="" method="post">
-                                <input type="text" size="1" value="{{ item.cantidad }}" name="cantidad" class="w30">
+                                <select name="cantidad" style="width:50px;">
+                                    {% for i  in 21|get_range %}
+                                        <option value="{{ i }}" {% if i == item.cantidad %} selected="selected" {% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>
                                 {% csrf_token %}
                                 <input type="hidden" name="item_id" value="{{ item.id }}" />
                                 &nbsp;<img class="update-item" title="Actualizar" alt="Actualizar" src="{{ STATIC_URL }}img/update.png">

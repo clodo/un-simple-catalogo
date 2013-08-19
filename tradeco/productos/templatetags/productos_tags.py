@@ -42,3 +42,7 @@ def humanize_precio(precio):
     else:
         return parte_entero
 
+#http://djangosnippets.org/snippets/1357/
+@register.filter
+def get_range(value):
+    return range(1, value)
